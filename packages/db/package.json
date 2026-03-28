@@ -10,8 +10,8 @@
   "scripts": {
     "build": "tsc",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit push:pg",
-    "db:push": "drizzle-kit push:pg",
+    "db:migrate": "drizzle-kit push",
+    "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "lint": "eslint src --ext .ts",
     "type-check": "tsc --noEmit"
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@liquid-sound/config": "workspace:*",
-    "drizzle-kit": "^0.20.0",
+    "drizzle-kit": "^0.22.0",
     "typescript": "^5.4.0"
   }
 }
