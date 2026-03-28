@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;600&family=Raleway:wght@300;400&family=JetBrains+Mono:wght@400&display=swap");
+
+:root {
+  /* Colors */
+  --bg-void: #000000;
+  --bg-deep: #050810;
+  --bg-subtle: #0a0f1e;
+  --glow-primary: #7eb8e8;
+  --glow-bright: #a8d8f0;
+  --silver-light: #e8eef5;
+  --silver-mid: #9fb0c4;
+  --silver-dim: #4a5a6e;
+  --white-pure: #ffffff;
+  --ice-crystal: #c8e6f5;
+  --halo-gold: #d4b56a;
+
+  /* Typography */
+  --font-display: "Cinzel Decorative", serif;
+  --font-heading: "Cinzel", serif;
+  --font-body: "Raleway", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-void);
+  color: var(--silver-light);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utility classes */
+.glow-text {
+  color: var(--silver-light);
+  text-shadow:
+    0 0 10px rgba(126, 184, 232, 0.6),
+    0 0 30px rgba(126, 184, 232, 0.3);
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(126, 184, 232, 0.4) 30%,
+    rgba(126, 184, 232, 0.4) 70%,
+    transparent
+  );
+  margin: var(--space-xl) auto;
+  max-width: 600px;
+}
+
+.section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+@media (max-width: 640px) {
+  .section-container {
+    padding: 0 var(--space-md);
+  }
+}

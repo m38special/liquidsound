@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <!-- Outer circle -->
+  <circle cx="200" cy="200" r="190" stroke="#7eb8e8" stroke-width="0.5" opacity="0.6"/>
+  <!-- Inner circle -->
+  <circle cx="200" cy="200" r="110" stroke="#7eb8e8" stroke-width="0.5" opacity="0.4"/>
+  <!-- 6 surrounding circles (Flower of Life) -->
+  <circle cx="200" cy="90" r="110" stroke="#7eb8e8" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="200" cy="310" r="110" stroke="#7eb8e8" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="105" cy="145" r="110" stroke="#7eb8e8" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="295" cy="145" r="110" stroke="#7eb8e8" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="105" cy="255" r="110" stroke="#7eb8e8" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="295" cy="255" r="110" stroke="#7eb8e8" stroke-width="0.5" opacity="0.3"/>
+  <!-- Star of David / hexagram lines -->
+  <line x1="200" y1="10" x2="200" y2="390" stroke="#7eb8e8" stroke-width="0.5" opacity="0.4"/>
+  <line x1="10" y1="200" x2="390" y2="200" stroke="#7eb8e8" stroke-width="0.5" opacity="0.4"/>
+  <line x1="55" y1="55" x2="345" y2="345" stroke="#7eb8e8" stroke-width="0.5" opacity="0.4"/>
+  <line x1="345" y1="55" x2="55" y2="345" stroke="#7eb8e8" stroke-width="0.5" opacity="0.4"/>
+  <!-- Hexagon -->
+  <polygon points="200,90 295,145 295,255 200,310 105,255 105,145" stroke="#7eb8e8" stroke-width="0.5" opacity="0.5" fill="none"/>
+  <!-- Inner triangles -->
+  <polygon points="200,90 295,255 105,255" stroke="#7eb8e8" stroke-width="0.5" opacity="0.4" fill="none"/>
+  <polygon points="200,310 105,145 295,145" stroke="#7eb8e8" stroke-width="0.5" opacity="0.4" fill="none"/>
+  <!-- Center dot -->
+  <circle cx="200" cy="200" r="4" fill="#7eb8e8" opacity="0.8"/>
+  <!-- 6 petal dots -->
+  <circle cx="200" cy="90" r="3" fill="#7eb8e8" opacity="0.6"/>
+  <circle cx="200" cy="310" r="3" fill="#7eb8e8" opacity="0.6"/>
+  <circle cx="105" cy="145" r="3" fill="#7eb8e8" opacity="0.6"/>
+  <circle cx="295" cy="145" r="3" fill="#7eb8e8" opacity="0.6"/>
+  <circle cx="105" cy="255" r="3" fill="#7eb8e8" opacity="0.6"/>
+  <circle cx="295" cy="255" r="3" fill="#7eb8e8" opacity="0.6"/>
+</svg>
