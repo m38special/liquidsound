@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "remotion bundle",
-    "dev": "remotion studio",
-    "render": "remotion render",
+    "build": "pnpm exec remotion bundle",
+    "dev": "pnpm exec remotion studio",
+    "render": "pnpm exec remotion render",
     "worker": "ts-node src/worker/renderWorker.ts",
-    "deploy:lambda": "remotion lambda functions deploy",
+    "deploy:lambda": "pnpm exec remotion lambda functions deploy",
     "lint": "eslint src --ext .ts,.tsx",
     "type-check": "tsc --noEmit"
   },
