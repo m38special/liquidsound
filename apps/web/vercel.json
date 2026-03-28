@@ -4,9 +4,6 @@
   "buildCommand": "cd ../.. && pnpm turbo build --filter=@liquid-sound/web",
   "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
   "outputDirectory": ".next",
-  "env": {
-    "NEXT_PUBLIC_APP_URL": "@app_url"
-  },
   "github": {
     "silent": true
   },
