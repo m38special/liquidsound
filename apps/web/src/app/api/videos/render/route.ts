@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Create DB record
-  const [job] = await db
+  const result = await db
     .insert(videoRenderJobs)
     .values({
       compositionId,
@@ -52,6 +52,11 @@ export async function POST(req: NextRequest) {
       status: "pending",
     })
     .returning();
+
+  const job = result[0];
+  if (!job) {
+    return NextResponse.json({ success: false, error: "Failed to create render job" }, { status: 500 });
+  }
 
   // Enqueue render job
   await renderQueue.add(
