@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   deploy-prod:
-    name: Build, Migrate & Deploy to Production
+    name: Build & Deploy to Production
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -52,11 +52,6 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           CLOUDFLARE_ACCESS_KEY: ${{ secrets.CLOUDFLARE_ACCESS_KEY }}
           CLOUDFLARE_SECRET_KEY: ${{ secrets.CLOUDFLARE_SECRET_KEY }}
-
-      - name: Run DB migrations
-        run: pnpm --filter @liquid-sound/db db:migrate
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Deploy to Vercel (production)
         run: |
