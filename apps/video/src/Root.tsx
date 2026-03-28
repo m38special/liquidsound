@@ -2,10 +2,35 @@ import { Composition } from "remotion";
 import { CourseIntro, CourseIntroProps } from "./compositions/CourseIntro";
 import { FinancialTip, FinancialTipProps } from "./compositions/FinancialTip";
 import { SocialClip, SocialClipProps } from "./compositions/SocialClip";
+import { TikTokSlide, TikTokSlideProps } from "./compositions/TikTokSlide";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* TikTokSlide — dynamic duration (9:16) at 30fps, driven by RANGIKU scripts */}
+      <Composition<TikTokSlideProps>
+        id="TikTokSlide"
+        component={TikTokSlide}
+        durationInFrames={900} // placeholder — real duration set via inputProps
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          slides: [
+            {
+              text: "LiQUiD SOUND — where music meets the cosmos.",
+              audioUrl: undefined,
+              durationInFrames: 150,
+            },
+          ],
+          hashtags: ["liquidsound", "music", "tiktok"],
+          cta: "Follow for more",
+        }}
+        calculateMetadata={({ props }) => ({
+          durationInFrames: props.slides.reduce((sum, s) => sum + s.durationInFrames, 0) || 900,
+        })}
+      />
+
       {/* FinancialTip — 60s vertical (9:16) at 30fps = 1800 frames */}
       <Composition<FinancialTipProps>
         id="FinancialTip"

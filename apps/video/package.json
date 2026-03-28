@@ -7,11 +7,14 @@
     "dev": "pnpm exec remotion studio src/remotion-entry.tsx",
     "render": "pnpm exec remotion render src/remotion-entry.tsx",
     "worker": "ts-node src/worker/renderWorker.ts",
+    "worker:tiktok": "ts-node src/worker/tikTokWorker.ts",
     "deploy:lambda": "pnpm exec remotion lambda functions deploy",
     "lint": "eslint src --ext .ts,.tsx",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@aws-sdk/client-polly": "^3.0.0",
+    "@aws-sdk/client-s3": "^3.0.0",
     "@liquid-sound/storage": "workspace:*",
     "@liquid-sound/types": "workspace:*",
     "@remotion/lambda": "^4.0.0",

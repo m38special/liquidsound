@@ -5,7 +5,7 @@ import { db, videoRenderJobs } from "@liquid-sound/db";
 import { renderQueue } from "@liquid-sound/storage";
 import { NextRequest, NextResponse } from "next/server";
 
-const VALID_COMPOSITIONS = ["FinancialTip", "CourseIntro", "SocialClip"] as const;
+const VALID_COMPOSITIONS = ["FinancialTip", "CourseIntro", "SocialClip", "TikTokSlide"] as const;
 type CompositionId = (typeof VALID_COMPOSITIONS)[number];
 
 interface RenderRequest {

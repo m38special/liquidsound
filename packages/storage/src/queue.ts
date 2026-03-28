@@ -16,6 +16,24 @@ export type RenderJobResult = {
   outputUrl: string;
 };
 
+// TikTok pipeline queue — accepts raw scripts, worker handles TTS + render enqueue
+export interface TikTokPipelineJobData {
+  jobId: string; // DB video_render_jobs id to update on completion
+  script: {
+    title: string;
+    slides: Array<{ text: string }>;
+    hashtags?: string[];
+    cta?: string;
+  };
+}
+
+export type TikTokPipelineJobResult = {
+  jobId: string;
+  totalFrames: number;
+};
+
+const TIKTOK_PIPELINE_QUEUE = "tiktok-pipeline";
+
 const QUEUE_NAME = "video-renders";
 
 // Lazy init: ioredis and BullMQ must not connect at module load time.
@@ -56,4 +74,43 @@ export function createRenderWorker(
     connection: getConnection(),
     concurrency: 5,
   });
+}
+
+// TikTok pipeline queue (separate from render queue — runs TTS before render enqueue)
+let _tikTokQueue: Queue<TikTokPipelineJobData, TikTokPipelineJobResult> | null = null;
+const getTikTokQueue = (): Queue<TikTokPipelineJobData, TikTokPipelineJobResult> =>
+  _tikTokQueue ??
+  (_tikTokQueue = new Queue<TikTokPipelineJobData, TikTokPipelineJobResult>(TIKTOK_PIPELINE_QUEUE, {
+    connection: getConnection(),
+    defaultJobOptions: {
+      attempts: 2,
+      backoff: { type: "exponential", delay: 10000 },
+      removeOnComplete: { count: 50 },
+      removeOnFail: { count: 25 },
+    },
+  }));
+
+export const tikTokPipelineQueue = new Proxy(
+  {} as Queue<TikTokPipelineJobData, TikTokPipelineJobResult>,
+  {
+    get: (_, prop) => {
+      const q = getTikTokQueue();
+      const value = q[prop as keyof Queue<TikTokPipelineJobData, TikTokPipelineJobResult>];
+      return typeof value === "function"
+        ? (value as (...args: unknown[]) => unknown).bind(q)
+        : value;
+    },
+  }
+);
+
+export function createTikTokPipelineWorker(
+  processor: (
+    job: Job<TikTokPipelineJobData, TikTokPipelineJobResult>
+  ) => Promise<TikTokPipelineJobResult>
+): Worker<TikTokPipelineJobData, TikTokPipelineJobResult> {
+  return new Worker<TikTokPipelineJobData, TikTokPipelineJobResult>(
+    TIKTOK_PIPELINE_QUEUE,
+    processor,
+    { connection: getConnection(), concurrency: 2 }
+  );
 }

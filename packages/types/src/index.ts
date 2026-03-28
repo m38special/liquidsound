@@ -28,3 +28,17 @@ export interface VideoRenderJob {
 }
 
 export type ApiResponse<T> = { success: true; data: T } | { success: false; error: string };
+
+// TikTok slide pipeline — script format from RANGIKU (CMO)
+export interface TikTokSlideData {
+  text: string; // Subtitle text shown on the slide
+  audioUrl?: string; // Pre-generated TTS audio URL (R2 public URL)
+  durationInFrames: number; // Frame count at 30fps
+}
+
+export interface TikTokScript {
+  title: string;
+  slides: Array<{ text: string }>;
+  hashtags?: string[];
+  cta?: string;
+}
