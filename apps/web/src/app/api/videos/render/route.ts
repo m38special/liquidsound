@@ -1,3 +1,4 @@
+import { auth } from "@liquid-sound/auth";
 import { db, videoRenderJobs } from "@liquid-sound/db";
 import { renderQueue } from "@liquid-sound/storage";
 import { NextRequest, NextResponse } from "next/server";
@@ -11,6 +12,11 @@ interface RenderRequest {
 }
 
 export async function POST(req: NextRequest) {
+  const { userId } = await auth();
+  if (!userId) {
+    return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+  }
+
   let body: RenderRequest;
   try {
     body = await req.json();
