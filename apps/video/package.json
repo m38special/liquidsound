@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "pnpm exec remotion bundle",
-    "dev": "pnpm exec remotion studio",
-    "render": "pnpm exec remotion render",
+    "build": "pnpm exec remotion bundle src/remotion-entry.tsx",
+    "dev": "pnpm exec remotion studio src/remotion-entry.tsx",
+    "render": "pnpm exec remotion render src/remotion-entry.tsx",
     "worker": "ts-node src/worker/renderWorker.ts",
     "deploy:lambda": "pnpm exec remotion lambda functions deploy",
     "lint": "eslint src --ext .ts,.tsx",
