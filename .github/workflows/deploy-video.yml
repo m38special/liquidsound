@@ -39,21 +39,19 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
+          aws-region: ${{ vars.AWS_REGION || 'us-east-2' }}
 
       - name: Deploy Remotion Lambda function
         run: |
-          pnpm --filter @liquid-sound/video exec \
-            npx remotion lambda functions deploy \
+          pnpm --filter @liquid-sound/video exec remotion lambda functions deploy \
             --memory=2048 \
             --timeout=240 \
-            --region=${{ vars.AWS_REGION || 'us-east-1' }}
+            --region=${{ vars.AWS_REGION || 'us-east-2' }}
 
       - name: Deploy Remotion site bundle
         run: |
-          SITE_URL=$(pnpm --filter @liquid-sound/video exec \
-            npx remotion lambda sites create src/index.ts \
+          SITE_URL=$(pnpm --filter @liquid-sound/video exec remotion lambda sites create src/index.ts \
             --site-name=liquid-sound \
-            --region=${{ vars.AWS_REGION || 'us-east-1' }} \
+            --region=${{ vars.AWS_REGION || 'us-east-2' }} \
             2>&1 | grep "Serve URL" | awk '{print $NF}')
           echo "Remotion site deployed: $SITE_URL"
