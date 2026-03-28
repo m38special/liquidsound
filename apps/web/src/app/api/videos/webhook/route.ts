@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { db, videoRenderJobs } from "@liquid-sound/db";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
