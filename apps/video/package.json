@@ -1,0 +1,25 @@
+{
+  "name": "@liquid-sound/video",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "remotion bundle",
+    "dev": "remotion studio",
+    "render": "remotion render",
+    "lint": "eslint src --ext .ts,.tsx",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@liquid-sound/types": "workspace:*",
+    "@remotion/lambda": "^4.0.0",
+    "remotion": "^4.0.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@liquid-sound/config": "workspace:*",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.4.0"
+  }
+}
