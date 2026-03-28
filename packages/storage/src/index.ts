@@ -13,3 +13,5 @@ export type {
   TikTokPipelineJobData,
   TikTokPipelineJobResult,
 } from "./queue";
+export { postVideoToTikTok, fetchTikTokPostStatus } from "./tiktok";
+export type { TikTokPostOptions, TikTokPostResult } from "./tiktok";

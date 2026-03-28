@@ -29,6 +29,12 @@ export const renderJobStatusEnum = pgEnum("render_job_status", [
   "failed",
 ]);
 
+export const distributionStatusEnum = pgEnum("distribution_status", [
+  "pending",
+  "posted",
+  "failed",
+]);
+
 export const videoRenderJobs = pgTable("video_render_jobs", {
   id: uuid("id").primaryKey().defaultRandom(),
   compositionId: text("composition_id").notNull(),
@@ -38,6 +44,11 @@ export const videoRenderJobs = pgTable("video_render_jobs", {
   remotionRenderId: text("remotion_render_id"),
   remotionBucketName: text("remotion_bucket_name"),
   errorMessage: text("error_message"),
+  // Distribution tracking
+  distributionStatus: distributionStatusEnum("distribution_status").notNull().default("pending"),
+  postedAt: timestamp("posted_at"),
+  tiktokPostId: text("tiktok_post_id"),
+  distributionError: text("distribution_error"),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });

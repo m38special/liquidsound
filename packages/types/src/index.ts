@@ -24,7 +24,18 @@ export interface VideoRenderJob {
   inputProps: Record<string, unknown>;
   outputUrl: string | null;
   status: "pending" | "rendering" | "done" | "failed";
+  distributionStatus: "pending" | "posted" | "failed";
+  postedAt: Date | null;
+  tiktokPostId: string | null;
+  distributionError: string | null;
   createdAt: Date;
+}
+
+// TikTok Content Posting API
+export interface TikTokPostResult {
+  publishId: string;
+  errorCode?: number;
+  errorMessage?: string;
 }
 
 export type ApiResponse<T> = { success: true; data: T } | { success: false; error: string };

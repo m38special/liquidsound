@@ -7,6 +7,12 @@
   "github": {
     "silent": true
   },
+  "crons": [
+    {
+      "path": "/api/cron/distribute",
+      "schedule": "0 */4 * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
