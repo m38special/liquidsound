@@ -1,0 +1,59 @@
+name: Deploy Video Pipeline
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - apps/video/**
+      - packages/types/**
+
+concurrency:
+  group: deploy-video
+  cancel-in-progress: false
+
+jobs:
+  deploy-video:
+    name: Deploy Remotion Lambda Bundle
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
+
+      - name: Deploy Remotion Lambda function
+        run: |
+          pnpm --filter @liquid-sound/video exec \
+            npx remotion lambda functions deploy \
+            --memory=2048 \
+            --timeout=240 \
+            --region=${{ vars.AWS_REGION || 'us-east-1' }}
+
+      - name: Deploy Remotion site bundle
+        run: |
+          SITE_URL=$(pnpm --filter @liquid-sound/video exec \
+            npx remotion lambda sites create src/index.ts \
+            --site-name=liquid-sound \
+            --region=${{ vars.AWS_REGION || 'us-east-1' }} \
+            2>&1 | grep "Serve URL" | awk '{print $NF}')
+          echo "Remotion site deployed: $SITE_URL"
