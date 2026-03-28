@@ -11,6 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.0.0",
     "@liquid-sound/auth": "workspace:*",
     "@liquid-sound/db": "workspace:*",
     "@liquid-sound/storage": "workspace:*",
