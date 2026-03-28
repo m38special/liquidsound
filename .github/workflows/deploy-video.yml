@@ -50,7 +50,7 @@ jobs:
 
       - name: Deploy Remotion site bundle
         run: |
-          SITE_URL=$(pnpm --filter @liquid-sound/video exec remotion lambda sites create src/index.ts \
+          SITE_URL=$(pnpm --filter @liquid-sound/video exec remotion lambda sites create src/remotion-entry.tsx \
             --site-name=liquid-sound \
             --region=${{ vars.AWS_REGION || 'us-east-2' }} \
             2>&1 | grep "Serve URL" | awk '{print $NF}')
