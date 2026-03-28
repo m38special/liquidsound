@@ -6,10 +6,13 @@
     "build": "remotion bundle",
     "dev": "remotion studio",
     "render": "remotion render",
+    "worker": "ts-node src/worker/renderWorker.ts",
+    "deploy:lambda": "remotion lambda functions deploy",
     "lint": "eslint src --ext .ts,.tsx",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@liquid-sound/storage": "workspace:*",
     "@liquid-sound/types": "workspace:*",
     "@remotion/lambda": "^4.0.0",
     "remotion": "^4.0.0",
@@ -20,6 +23,7 @@
     "@liquid-sound/config": "workspace:*",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
+    "ts-node": "^10.9.0",
     "typescript": "^5.4.0"
   }
 }

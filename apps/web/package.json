@@ -13,8 +13,10 @@
   "dependencies": {
     "@liquid-sound/auth": "workspace:*",
     "@liquid-sound/db": "workspace:*",
+    "@liquid-sound/storage": "workspace:*",
     "@liquid-sound/types": "workspace:*",
     "@liquid-sound/ui": "workspace:*",
+    "drizzle-orm": "^0.30.0",
     "next": "^14.2.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
