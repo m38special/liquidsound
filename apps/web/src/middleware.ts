@@ -7,9 +7,9 @@ const isPublicRoute = createRouteMatcher([
   "/api/videos/webhook", // webhook receives server-to-server calls verified by HMAC
 ]);
 
-export default clerkMiddleware(async (auth, req) => {
+export default clerkMiddleware((auth, req) => {
   if (!isPublicRoute(req)) {
-    await auth.protect();
+    auth().protect();
   }
 });
 
