@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { auth } from "@liquid-sound/auth";
 import { db, videoRenderJobs } from "@liquid-sound/db";
 import { renderQueue } from "@liquid-sound/storage";
