@@ -1,11 +1,9 @@
 import {
   AbsoluteFill,
-  Audio,
   Img,
   interpolate,
   Sequence,
   spring,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -30,12 +28,10 @@ export const CourseIntro: React.FC<CourseIntroProps> = ({
   const { fps, durationInFrames } = useVideoConfig();
 
   // Fade out in last 30 frames
-  const globalOpacity = interpolate(
-    frame,
-    [durationInFrames - 30, durationInFrames],
-    [1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  const globalOpacity = interpolate(frame, [durationInFrames - 30, durationInFrames], [1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   const logoScale = spring({ frame, fps, config: { damping: 18, stiffness: 60 } });
   const titleY = spring({ frame: frame - 15, fps, config: { damping: 20 } });
@@ -63,10 +59,7 @@ export const CourseIntro: React.FC<CourseIntroProps> = ({
       {/* Cover image (if provided) */}
       {coverImageUrl && (
         <AbsoluteFill style={{ opacity: 0.15 }}>
-          <Img
-            src={coverImageUrl}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
+          <Img src={coverImageUrl} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </AbsoluteFill>
       )}
 

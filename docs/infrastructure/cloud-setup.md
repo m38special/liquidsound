@@ -34,17 +34,21 @@ git push -u origin main
 5. Vercel will use `apps/web/vercel.json` for build config automatically
 
 ### Environments to create
-| Environment | Branch      | Purpose               |
-|-------------|-------------|----------------------|
-| Production  | `main`      | Production app        |
-| Preview     | PRs / `dev` | Per-PR preview deploys|
+
+| Environment | Branch      | Purpose                |
+| ----------- | ----------- | ---------------------- |
+| Production  | `main`      | Production app         |
+| Preview     | PRs / `dev` | Per-PR preview deploys |
 
 ### Vercel Environment Variables (add after each service below)
+
 All variables in `.env.example` must be set in Vercel's dashboard.
 Mark `NEXT_PUBLIC_*` vars as "Available to browser".
 
 ### Custom Domain (pending board)
+
 Once a domain is available:
+
 1. Vercel → Project → Settings → Domains → Add domain
 2. Point DNS: add CNAME record `@ → cname.vercel-dns.com`
 
@@ -60,20 +64,24 @@ Once a domain is available:
 4. **Postgres version**: 16
 
 ### Branches
-| Branch   | Purpose                              |
-|----------|--------------------------------------|
-| `main`   | Production database                  |
-| `dev`    | Staging / preview environment        |
+
+| Branch | Purpose                       |
+| ------ | ----------------------------- |
+| `main` | Production database           |
+| `dev`  | Staging / preview environment |
 
 Create the `dev` branch:
 Neon console → Branches → Create branch → name: `dev`, from: `main`
 
 ### Credentials
+
 Copy connection strings:
+
 - **Production**: `DATABASE_URL` → Vercel Production env
 - **Staging**: `DATABASE_URL` → Vercel Preview env (use `dev` branch URL)
 
 ### Run migrations
+
 ```bash
 # After setting DATABASE_URL locally:
 pnpm --filter @liquid-sound/db db:migrate
@@ -90,7 +98,9 @@ pnpm --filter @liquid-sound/db db:migrate
 3. **Location**: Automatic (or US East for latency parity with Neon)
 
 ### CORS configuration
+
 In the bucket settings → CORS policy:
+
 ```json
 [
   {
@@ -103,12 +113,15 @@ In the bucket settings → CORS policy:
 ```
 
 ### API Token
+
 1. My Profile → API Tokens → Create Token → R2 Token
 2. Permissions: Object Read & Write on bucket `liquid-sound-media`
 3. Copy: `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_R2_ACCESS_KEY_ID`, `CLOUDFLARE_R2_SECRET_ACCESS_KEY`
 
 ### Public Access URL (pending custom domain)
+
 Once domain is available:
+
 - Add a custom subdomain `media.liquid-sound.com` → point to R2 bucket
 - Or enable R2 public bucket URL (less ideal — random Cloudflare URL)
 - Update `NEXT_PUBLIC_R2_PUBLIC_URL` in Vercel env vars
@@ -126,6 +139,7 @@ Once domain is available:
 5. **Enable TLS**: ✓
 
 Copy from the REST API panel:
+
 - `UPSTASH_REDIS_REST_URL`
 - `UPSTASH_REDIS_REST_TOKEN`
 
@@ -141,10 +155,12 @@ Copy from the REST API panel:
    - `liquid-sound-prod` → for Production
 
 ### Credentials (per instance)
+
 - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` → `pk_test_*` (dev) / `pk_live_*` (prod)
 - `CLERK_SECRET_KEY` → `sk_test_*` (dev) / `sk_live_*` (prod)
 
 ### Custom Domain (pending board)
+
 Clerk Production → Domains → Add domain: `accounts.liquid-sound.com`
 
 ---
@@ -157,6 +173,7 @@ Clerk Production → Domains → Add domain: `accounts.liquid-sound.com`
 4. Copy `RESEND_API_KEY`
 
 ### Domain verification (pending board)
+
 1. Resend → Domains → Add domain: `liquid-sound.com`
 2. Add DNS records (SPF, DKIM, DMARC) as shown in Resend dashboard
 3. Set `RESEND_FROM_EMAIL=noreply@liquid-sound.com` once verified
@@ -176,14 +193,14 @@ Minimum IAM permissions needed: documented in `apps/video/README.md` (created in
 
 ## Summary Checklist
 
-| Service        | Status     | Blocker                     |
-|----------------|------------|-----------------------------|
-| GitHub org     | ✅ Ready    | Name confirmed: `LiQUiDSOUND` |
-| Vercel         | ✅ Config ready | Needs repo push first  |
-| Neon           | ✅ Ready    | —                            |
-| Cloudflare R2  | ✅ Ready    | Public URL needs domain      |
-| Upstash Redis  | ✅ Ready    | —                            |
-| Clerk          | ✅ Ready    | Custom domain optional       |
-| Resend         | ✅ Ready    | Domain verification optional |
-| AWS / Lambda   | ⏳ LIQA-14 | AWS account access needed    |
-| Custom domain  | ❌ Blocked  | Board to provide domain name |
+| Service       | Status          | Blocker                       |
+| ------------- | --------------- | ----------------------------- |
+| GitHub org    | ✅ Ready        | Name confirmed: `LiQUiDSOUND` |
+| Vercel        | ✅ Config ready | Needs repo push first         |
+| Neon          | ✅ Ready        | —                             |
+| Cloudflare R2 | ✅ Ready        | Public URL needs domain       |
+| Upstash Redis | ✅ Ready        | —                             |
+| Clerk         | ✅ Ready        | Custom domain optional        |
+| Resend        | ✅ Ready        | Domain verification optional  |
+| AWS / Lambda  | ⏳ LIQA-14      | AWS account access needed     |
+| Custom domain | ❌ Blocked      | Board to provide domain name  |

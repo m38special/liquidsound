@@ -22,13 +22,19 @@ export async function POST(req: NextRequest) {
 
   if (!VALID_COMPOSITIONS.includes(compositionId)) {
     return NextResponse.json(
-      { success: false, error: `Invalid compositionId. Must be one of: ${VALID_COMPOSITIONS.join(", ")}` },
+      {
+        success: false,
+        error: `Invalid compositionId. Must be one of: ${VALID_COMPOSITIONS.join(", ")}`,
+      },
       { status: 400 }
     );
   }
 
   if (!inputProps || typeof inputProps !== "object") {
-    return NextResponse.json({ success: false, error: "inputProps must be an object" }, { status: 400 });
+    return NextResponse.json(
+      { success: false, error: "inputProps must be an object" },
+      { status: 400 }
+    );
   }
 
   // Create DB record

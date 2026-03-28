@@ -1,9 +1,10 @@
 {
-  "extends": "@liquid-sound/config/tsconfig.json",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@liquid-sound/config/tsconfig",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src"
   },
-  "include": ["src"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }

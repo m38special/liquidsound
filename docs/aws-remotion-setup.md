@@ -67,10 +67,7 @@ Create a custom policy with the JSON below and attach it to the user.
         "s3:GetBucketCORS",
         "s3:PutBucketCORS"
       ],
-      "Resource": [
-        "arn:aws:s3:::remotionlambda-*",
-        "arn:aws:s3:::remotionlambda-*/*"
-      ]
+      "Resource": ["arn:aws:s3:::remotionlambda-*", "arn:aws:s3:::remotionlambda-*/*"]
     },
     {
       "Sid": "IAMRoles",
@@ -101,10 +98,7 @@ Create a custom policy with the JSON below and attach it to the user.
     {
       "Sid": "ServiceQuotas",
       "Effect": "Allow",
-      "Action": [
-        "servicequotas:GetServiceQuota",
-        "servicequotas:GetAWSDefaultServiceQuota"
-      ],
+      "Action": ["servicequotas:GetServiceQuota", "servicequotas:GetAWSDefaultServiceQuota"],
       "Resource": "*"
     }
   ]
@@ -123,27 +117,35 @@ AWS_REGION=us-east-2
 
 ## Step 4 — Deploy Remotion Lambda
 
-From the project root:
+**Already deployed** (2026-03-28):
+
+```
+Function: remotion-render-4-0-441-mem2048mb-disk2048mb-240sec
+Region:   us-east-2
+Memory:   2048 MB
+Timeout:  240s
+```
+
+To redeploy:
 
 ```bash
-# Deploy the Lambda function to AWS
 pnpm --filter @liquid-sound/video deploy:lambda
-
-# This runs: remotion lambda functions deploy
-# Outputs: function name + serve URL — add both to .env.local
 ```
 
 ## Step 5 — Bundle & Upload Compositions (Site)
 
+**Already deployed** (2026-03-28):
+
+```
+Serve URL: https://remotionlambda-useast2-kohj42amea.s3.us-east-2.amazonaws.com/sites/liquidsound-v1/index.html
+S3 Bucket: remotionlambda-useast2-kohj42amea
+Site name: liquidsound-v1
+```
+
+To redeploy after changing compositions:
+
 ```bash
-cd apps/video
-
-# Create the Remotion serve URL (bundles compositions to S3)
-npx remotion lambda sites create src/index.ts --site-name=liquidsound-v1
-
-# Outputs a serve URL like:
-# https://remotionlambda-xxxx.s3.us-east-2.amazonaws.com/sites/liquidsound-v1/index.html
-# → Add as REMOTION_LAMBDA_SERVE_URL in .env.local
+npx remotion lambda sites create apps/video/src/remotion-entry.tsx --site-name=liquidsound-v1
 ```
 
 ## Step 6 — Tag Resources
@@ -169,9 +171,9 @@ curl -X POST http://localhost:3000/api/videos/render \
 
 ## Remotion Lambda Limits (us-east-2 defaults)
 
-| Limit | Default | Notes |
-|-------|---------|-------|
-| Concurrent executions | 1000 | Request increase if needed |
-| Lambda memory | 2048 MB | Configurable per render |
-| Max render duration | 900s | Remotion chunks large videos |
-| S3 bucket prefix | `remotionlambda-` | Auto-created by CLI |
+| Limit                 | Default           | Notes                        |
+| --------------------- | ----------------- | ---------------------------- |
+| Concurrent executions | 1000              | Request increase if needed   |
+| Lambda memory         | 2048 MB           | Configurable per render      |
+| Max render duration   | 900s              | Remotion chunks large videos |
+| S3 bucket prefix      | `remotionlambda-` | Auto-created by CLI          |
