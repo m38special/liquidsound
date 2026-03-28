@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
       inputProps,
       serveUrl: process.env.REMOTION_LAMBDA_SERVE_URL!,
       functionName: process.env.REMOTION_LAMBDA_FUNCTION_NAME!,
-      region: process.env.AWS_REGION ?? "us-east-1",
+      region: process.env.AWS_REGION ?? "us-east-2",
     },
     { jobId: job.id }
   );
