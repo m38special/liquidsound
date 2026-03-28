@@ -20,6 +20,8 @@ export const r2 = new Proxy({} as S3Client, {
   get: (_, prop) => {
     const client = getR2();
     const value = client[prop as keyof S3Client];
-    return typeof value === "function" ? (value as Function).bind(client) : value;
+    return typeof value === "function"
+      ? (value as (...args: unknown[]) => unknown).bind(client)
+      : value;
   },
 });

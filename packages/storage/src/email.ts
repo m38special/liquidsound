@@ -10,6 +10,8 @@ export const resend = new Proxy({} as Resend, {
   get: (_, prop) => {
     const client = getResend();
     const value = client[prop as keyof Resend];
-    return typeof value === "function" ? (value as Function).bind(client) : value;
+    return typeof value === "function"
+      ? (value as (...args: unknown[]) => unknown).bind(client)
+      : value;
   },
 });

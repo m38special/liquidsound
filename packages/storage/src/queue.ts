@@ -45,7 +45,7 @@ export const renderQueue = new Proxy({} as Queue<RenderJobData, RenderJobResult>
   get: (_, prop) => {
     const q = getRenderQueue();
     const value = q[prop as keyof Queue<RenderJobData, RenderJobResult>];
-    return typeof value === "function" ? (value as Function).bind(q) : value;
+    return typeof value === "function" ? (value as (...args: unknown[]) => unknown).bind(q) : value;
   },
 });
 
