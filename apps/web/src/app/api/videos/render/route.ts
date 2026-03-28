@@ -55,7 +55,10 @@ export async function POST(req: NextRequest) {
 
   const job = result[0];
   if (!job) {
-    return NextResponse.json({ success: false, error: "Failed to create render job" }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: "Failed to create render job" },
+      { status: 500 }
+    );
   }
 
   // Enqueue render job

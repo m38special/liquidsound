@@ -69,6 +69,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@clerk/nextjs':
+        specifier: ^5.7.5
+        version: 5.7.5(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@liquid-sound/auth':
         specifier: workspace:*
         version: link:../../packages/auth
