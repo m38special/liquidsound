@@ -36,7 +36,6 @@ jobs:
         run: |
           DEPLOYMENT_URL=$(pnpm vercel deploy \
             --token=${{ secrets.VERCEL_TOKEN }} \
-            --scope=${{ secrets.VERCEL_TEAM_ID }} \
             2>&1 | tail -1)
           echo "url=$DEPLOYMENT_URL" >> "$GITHUB_OUTPUT"
         env:
