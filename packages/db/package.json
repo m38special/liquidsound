@@ -10,8 +10,8 @@
   "scripts": {
     "build": "tsc",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit push",
-    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit push:pg",
+    "db:push": "drizzle-kit push:pg",
     "db:studio": "drizzle-kit studio",
     "lint": "eslint src --ext .ts",
     "type-check": "tsc --noEmit"
