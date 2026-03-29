@@ -18,7 +18,7 @@ export default function HomePage() {
         }}
       >
         <Image
-          src="/assets/mockup-888.jpg"
+          src="/assets/mockup-bg.png"
           alt=""
           fill
           style={{ objectFit: "cover", objectPosition: "top" }}
