@@ -106,19 +106,44 @@ export default function HomePage() {
           textAlign: "center",
         }}
       >
-        {/* Main Headline */}
+        {/* Main Headline - Crystallized Glass Effect */}
         <h1
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(2.5rem, 6vw, 5rem)",
-            letterSpacing: "0.2em",
+            fontSize: "clamp(3rem, 8vw, 7rem)",
+            letterSpacing: "0.15em",
             color: "#ffffff",
-            textShadow:
-              "0 4px 20px rgba(0,0,0,0.9), 0 0 60px rgba(126,184,232,0.6), 0 0 120px rgba(126,184,232,0.3)",
-            marginBottom: "16px",
+            textShadow: `
+              0 0 40px rgba(126,184,232,0.5),
+              0 0 80px rgba(126,184,232,0.3),
+              0 0 120px rgba(126,184,232,0.2),
+              0 2px 4px rgba(0,0,0,0.8)
+            `,
+            marginBottom: "20px",
+            position: "relative",
           }}
         >
-          LiQUiD SOUND
+          <span
+            style={{
+              position: "relative",
+              display: "inline-block",
+              padding: "15px 30px",
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(126,184,232,0.1) 50%, rgba(255,255,255,0.05) 100%)",
+              backdropFilter: "blur(25px)",
+              WebkitBackdropFilter: "blur(25px)",
+              borderRadius: "12px",
+              border: "1px solid rgba(126,184,232,0.3)",
+              boxShadow: `
+                0 8px 32px rgba(0,0,0,0.4),
+                0 0 60px rgba(126,184,232,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 0 20px rgba(126,184,232,0.1)
+              `,
+            }}
+          >
+            LiQUiD SOUND
+          </span>
         </h1>
 
         {/* Tagline */}
