@@ -186,6 +186,17 @@ a {
   animation: shimmer 3s linear infinite;
 }
 
+/* Twinkle animation for particles */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
 .divider {
   border: none;
   height: 1px;
