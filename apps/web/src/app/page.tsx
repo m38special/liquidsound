@@ -15,6 +15,7 @@ export default function HomePage() {
           width: "100%",
           height: "100%",
           zIndex: 0,
+          clipPath: "inset(200px 0 0 0)",
         }}
       >
         <Image
