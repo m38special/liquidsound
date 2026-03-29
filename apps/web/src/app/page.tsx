@@ -26,6 +26,21 @@ export default function HomePage() {
         />
       </div>
 
+      {/* Overlay gradient for readability - stronger */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 20%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.8) 100%)",
+          zIndex: 1,
+          pointerEvents: "none",
+        }}
+      />
+
       {/* Navigation - clean and minimal */}
       <nav
         style={{
@@ -34,7 +49,7 @@ export default function HomePage() {
           left: 0,
           right: 0,
           zIndex: 100,
-          padding: "24px 60px",
+          padding: "28px 60px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -53,20 +68,22 @@ export default function HomePage() {
               href={item.href}
               style={{
                 fontFamily: "var(--font-heading)",
-                fontSize: "0.75rem",
-                letterSpacing: "0.25em",
-                color: "rgba(255,255,255,0.7)",
+                fontSize: "0.8rem",
+                letterSpacing: "0.3em",
+                color: "#ffffff",
                 textTransform: "uppercase",
                 transition: "all 0.3s ease",
                 textDecoration: "none",
+                textShadow: "0 2px 10px rgba(0,0,0,0.8)",
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.color = "#7eb8e8";
-                e.currentTarget.style.textShadow = "0 0 10px rgba(126,184,232,0.5)";
+                e.currentTarget.style.textShadow =
+                  "0 0 15px rgba(126,184,232,0.8), 0 2px 10px rgba(0,0,0,0.8)";
               }}
               onMouseOut={(e) => {
-                e.currentTarget.style.color = "rgba(255,255,255,0.7)";
-                e.currentTarget.style.textShadow = "none";
+                e.currentTarget.style.color = "#ffffff";
+                e.currentTarget.style.textShadow = "0 2px 10px rgba(0,0,0,0.8)";
               }}
             >
               {item.label}
@@ -96,7 +113,8 @@ export default function HomePage() {
             fontSize: "clamp(2.5rem, 6vw, 5rem)",
             letterSpacing: "0.2em",
             color: "#ffffff",
-            textShadow: "0 0 60px rgba(126,184,232,0.6), 0 0 120px rgba(126,184,232,0.3)",
+            textShadow:
+              "0 4px 20px rgba(0,0,0,0.9), 0 0 60px rgba(126,184,232,0.6), 0 0 120px rgba(126,184,232,0.3)",
             marginBottom: "16px",
           }}
         >
@@ -112,6 +130,7 @@ export default function HomePage() {
             color: "#7eb8e8",
             marginBottom: "40px",
             textTransform: "uppercase",
+            textShadow: "0 2px 15px rgba(0,0,0,0.9)",
           }}
         >
           Sound Design • Content Studio • Distribution
@@ -122,10 +141,11 @@ export default function HomePage() {
           style={{
             fontFamily: "var(--font-body)",
             fontSize: "clamp(0.85rem, 1.2vw, 1rem)",
-            color: "rgba(255,255,255,0.75)",
+            color: "rgba(255,255,255,0.9)",
             maxWidth: "550px",
             marginBottom: "50px",
             lineHeight: 1.9,
+            textShadow: "0 2px 10px rgba(0,0,0,0.8)",
           }}
         >
           A next-generation music and creative content studio operating at the intersection of sound
