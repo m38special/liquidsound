@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const pillars = [
   {
@@ -120,7 +121,7 @@ export default function HomePage() {
             padding: "0 24px",
           }}
         >
-          {/* Logo mark */}
+          {/* Brand Logo Image */}
           <div
             style={{
               marginBottom: "var(--space-xl)",
@@ -128,45 +129,17 @@ export default function HomePage() {
               justifyContent: "center",
             }}
           >
-            <svg
-              width="140"
-              height="140"
-              viewBox="0 0 400 400"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{ filter: "drop-shadow(0 0 30px rgba(126,184,232,0.4))" }}
-            >
-              <circle cx="200" cy="200" r="190" stroke="#7eb8e8" strokeWidth="2" opacity="0.6" />
-              <circle cx="200" cy="200" r="110" stroke="#7eb8e8" strokeWidth="1.5" opacity="0.4" />
-              <circle cx="200" cy="90" r="110" stroke="#7eb8e8" strokeWidth="1" opacity="0.2" />
-              <circle cx="200" cy="310" r="110" stroke="#7eb8e8" strokeWidth="1" opacity="0.2" />
-              <circle cx="105" cy="145" r="110" stroke="#7eb8e8" strokeWidth="1" opacity="0.2" />
-              <circle cx="295" cy="145" r="110" stroke="#7eb8e8" strokeWidth="1" opacity="0.2" />
-              <circle cx="105" cy="255" r="110" stroke="#7eb8e8" strokeWidth="1" opacity="0.2" />
-              <circle cx="295" cy="255" r="110" stroke="#7eb8e8" strokeWidth="1" opacity="0.2" />
-              <polygon
-                points="200,90 295,255 105,255"
-                stroke="#7eb8e8"
-                strokeWidth="2"
-                opacity="0.7"
-                fill="none"
-              />
-              <polygon
-                points="200,310 105,145 295,145"
-                stroke="#7eb8e8"
-                strokeWidth="2"
-                opacity="0.7"
-                fill="none"
-              />
-              <polygon
-                points="200,90 295,145 295,255 200,310 105,255 105,145"
-                stroke="#7eb8e8"
-                strokeWidth="1.5"
-                opacity="0.5"
-                fill="none"
-              />
-              <circle cx="200" cy="200" r="10" fill="#7eb8e8" opacity="0.9" />
-            </svg>
+            <Image
+              src="/assets/brand-logo.jpg"
+              alt="LiQUiD SOUND"
+              width={350}
+              height={350}
+              style={{
+                filter: "drop-shadow(0 0 40px rgba(126,184,232,0.5))",
+                borderRadius: "8px",
+              }}
+              priority
+            />
           </div>
 
           <h1
