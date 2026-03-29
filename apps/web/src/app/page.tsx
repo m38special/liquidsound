@@ -102,7 +102,7 @@ export default function HomePage() {
           alignItems: "center",
           position: "relative",
           zIndex: 10,
-          padding: "800px 24px 80px",
+          padding: "550px 24px 80px",
           textAlign: "center",
         }}
       >
