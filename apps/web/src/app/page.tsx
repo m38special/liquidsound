@@ -110,7 +110,7 @@ export default function HomePage() {
         <h2
           style={{
             fontFamily: "var(--font-heading)",
-            fontSize: "clamp(0.8rem, 1.5vw, 1.1rem)",
+            fontSize: "clamp(0.9rem, 1.8vw, 1.3rem)",
             letterSpacing: "0.4em",
             color: "#7eb8e8",
             marginBottom: "40px",
@@ -125,7 +125,7 @@ export default function HomePage() {
         <p
           style={{
             fontFamily: "var(--font-body)",
-            fontSize: "clamp(0.85rem, 1.2vw, 1rem)",
+            fontSize: "clamp(1rem, 1.5vw, 1.2rem)",
             color: "rgba(255,255,255,0.9)",
             maxWidth: "550px",
             marginBottom: "50px",
@@ -273,7 +273,7 @@ export default function HomePage() {
                 <p
                   style={{
                     fontFamily: "var(--font-body)",
-                    fontSize: "0.85rem",
+                    fontSize: "1rem",
                     color: "rgba(255,255,255,0.6)",
                     lineHeight: 1.8,
                   }}
@@ -361,7 +361,7 @@ export default function HomePage() {
         <p
           style={{
             fontFamily: "var(--font-body)",
-            fontSize: "0.95rem",
+            fontSize: "1.05rem",
             color: "rgba(255,255,255,0.6)",
             maxWidth: "450px",
             margin: "0 auto 35px",
