@@ -26,22 +26,7 @@ export default function HomePage() {
         />
       </div>
 
-      {/* Overlay gradient for readability */}
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 30%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.8) 100%)",
-          zIndex: 1,
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* Navigation */}
+      {/* Navigation - clean and minimal */}
       <nav
         style={{
           position: "fixed",
@@ -49,55 +34,48 @@ export default function HomePage() {
           left: 0,
           right: 0,
           zIndex: 100,
-          padding: "20px 40px",
+          padding: "24px 60px",
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "center",
           alignItems: "center",
-          background: "linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%)",
+          background: "transparent",
         }}
       >
-        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <Image
-            src="/assets/brand-logo.jpg"
-            alt="LiQUiD SOUND"
-            width={40}
-            height={40}
-            style={{ borderRadius: "4px" }}
-          />
-          <span
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "1.1rem",
-              letterSpacing: "0.1em",
-              color: "#e8eef5",
-            }}
-          >
-            LiQUiD SOUND
-          </span>
-        </Link>
-        <div style={{ display: "flex", gap: "32px" }}>
-          {["Home", "About", "Media", "Contact"].map((item) => (
+        <div style={{ display: "flex", gap: "48px" }}>
+          {[
+            { label: "HOME", href: "/" },
+            { label: "ABOUT", href: "/about" },
+            { label: "MEDIA", href: "/media" },
+            { label: "CONTACT", href: "/contact" },
+          ].map((item) => (
             <Link
-              key={item}
-              href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              key={item.label}
+              href={item.href}
               style={{
                 fontFamily: "var(--font-heading)",
-                fontSize: "0.85rem",
-                letterSpacing: "0.15em",
-                color: "rgba(255,255,255,0.8)",
+                fontSize: "0.75rem",
+                letterSpacing: "0.25em",
+                color: "rgba(255,255,255,0.7)",
                 textTransform: "uppercase",
-                transition: "color 0.3s ease",
+                transition: "all 0.3s ease",
+                textDecoration: "none",
               }}
-              onMouseOver={(e) => (e.currentTarget.style.color = "#7eb8e8")}
-              onMouseOut={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
+              onMouseOver={(e) => {
+                e.currentTarget.style.color = "#7eb8e8";
+                e.currentTarget.style.textShadow = "0 0 10px rgba(126,184,232,0.5)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.color = "rgba(255,255,255,0.7)";
+                e.currentTarget.style.textShadow = "none";
+              }}
             >
-              {item}
+              {item.label}
             </Link>
           ))}
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section - Centered content over background */}
       <section
         style={{
           minHeight: "100vh",
@@ -107,35 +85,18 @@ export default function HomePage() {
           alignItems: "center",
           position: "relative",
           zIndex: 10,
-          padding: "120px 24px 80px",
+          padding: "100px 24px 80px",
           textAlign: "center",
         }}
       >
-        {/* Brand Logo */}
-        <div style={{ marginBottom: "40px" }}>
-          <Image
-            src="/assets/brand-logo.jpg"
-            alt="LiQUiD SOUND"
-            width={450}
-            height={450}
-            style={{
-              filter: "drop-shadow(0 0 50px rgba(126,184,232,0.5))",
-              borderRadius: "12px",
-              maxWidth: "100%",
-              height: "auto",
-            }}
-            priority
-          />
-        </div>
-
         {/* Main Headline */}
         <h1
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(2rem, 5vw, 4rem)",
-            letterSpacing: "0.15em",
+            fontSize: "clamp(2.5rem, 6vw, 5rem)",
+            letterSpacing: "0.2em",
             color: "#ffffff",
-            textShadow: "0 0 40px rgba(126,184,232,0.6)",
+            textShadow: "0 0 60px rgba(126,184,232,0.6), 0 0 120px rgba(126,184,232,0.3)",
             marginBottom: "16px",
           }}
         >
@@ -146,10 +107,10 @@ export default function HomePage() {
         <h2
           style={{
             fontFamily: "var(--font-heading)",
-            fontSize: "clamp(0.9rem, 2vw, 1.3rem)",
-            letterSpacing: "0.25em",
+            fontSize: "clamp(0.8rem, 1.5vw, 1.1rem)",
+            letterSpacing: "0.4em",
             color: "#7eb8e8",
-            marginBottom: "32px",
+            marginBottom: "40px",
             textTransform: "uppercase",
           }}
         >
@@ -160,11 +121,11 @@ export default function HomePage() {
         <p
           style={{
             fontFamily: "var(--font-body)",
-            fontSize: "clamp(0.9rem, 1.5vw, 1.1rem)",
-            color: "rgba(255,255,255,0.85)",
-            maxWidth: "600px",
-            marginBottom: "48px",
-            lineHeight: 1.8,
+            fontSize: "clamp(0.85rem, 1.2vw, 1rem)",
+            color: "rgba(255,255,255,0.75)",
+            maxWidth: "550px",
+            marginBottom: "50px",
+            lineHeight: 1.9,
           }}
         >
           A next-generation music and creative content studio operating at the intersection of sound
@@ -172,31 +133,31 @@ export default function HomePage() {
         </p>
 
         {/* CTA Buttons */}
-        <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", justifyContent: "center" }}>
+        <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}>
           <Link
             href="/contact"
             style={{
-              padding: "16px 40px",
-              background:
-                "linear-gradient(135deg, rgba(126,184,232,0.2) 0%, rgba(126,184,232,0.1) 100%)",
+              padding: "14px 36px",
+              background: "rgba(126,184,232,0.1)",
               border: "1px solid #7eb8e8",
-              borderRadius: "4px",
+              borderRadius: "2px",
               color: "#7eb8e8",
               fontFamily: "var(--font-heading)",
-              fontSize: "0.85rem",
-              letterSpacing: "0.15em",
+              fontSize: "0.7rem",
+              letterSpacing: "0.2em",
               textTransform: "uppercase",
               backdropFilter: "blur(10px)",
-              boxShadow: "0 0 30px rgba(126,184,232,0.3)",
+              boxShadow: "0 0 20px rgba(126,184,232,0.2)",
               transition: "all 0.3s ease",
+              textDecoration: "none",
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.boxShadow = "0 0 50px rgba(126,184,232,0.5)";
-              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 0 40px rgba(126,184,232,0.4)";
+              e.currentTarget.style.background = "rgba(126,184,232,0.2)";
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.boxShadow = "0 0 30px rgba(126,184,232,0.3)";
-              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "0 0 20px rgba(126,184,232,0.2)";
+              e.currentTarget.style.background = "rgba(126,184,232,0.1)";
             }}
           >
             Enter the Frequency
@@ -204,55 +165,29 @@ export default function HomePage() {
           <Link
             href="/media"
             style={{
-              padding: "16px 40px",
+              padding: "14px 36px",
               background: "transparent",
-              border: "1px solid rgba(255,255,255,0.3)",
-              borderRadius: "4px",
-              color: "rgba(255,255,255,0.8)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              borderRadius: "2px",
+              color: "rgba(255,255,255,0.6)",
               fontFamily: "var(--font-heading)",
-              fontSize: "0.85rem",
-              letterSpacing: "0.15em",
+              fontSize: "0.7rem",
+              letterSpacing: "0.2em",
               textTransform: "uppercase",
               transition: "all 0.3s ease",
+              textDecoration: "none",
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.6)";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)";
               e.currentTarget.style.color = "#ffffff";
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)";
-              e.currentTarget.style.color = "rgba(255,255,255,0.8)";
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)";
+              e.currentTarget.style.color = "rgba(255,255,255,0.6)";
             }}
           >
             View Our Work
           </Link>
-        </div>
-
-        {/* Scroll indicator */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "40px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "8px",
-          }}
-        >
-          <span
-            style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.2em" }}
-          >
-            SCROLL
-          </span>
-          <div
-            style={{
-              width: "1px",
-              height: "40px",
-              background: "linear-gradient(to bottom, rgba(126,184,232,0.8), transparent)",
-            }}
-          />
         </div>
       </section>
 
@@ -261,20 +196,19 @@ export default function HomePage() {
         style={{
           position: "relative",
           zIndex: 10,
-          padding: "100px 24px",
-          background:
-            "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.8) 100%)",
+          padding: "80px 24px",
+          background: "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 100%)",
         }}
       >
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <h3
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
-              letterSpacing: "0.1em",
+              fontSize: "clamp(1.2rem, 2.5vw, 2rem)",
+              letterSpacing: "0.15em",
               color: "#7eb8e8",
               textAlign: "center",
-              marginBottom: "60px",
+              marginBottom: "50px",
             }}
           >
             Our Three Pillars
@@ -283,8 +217,8 @@ export default function HomePage() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "32px",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "24px",
             }}
           >
             {[
@@ -304,31 +238,29 @@ export default function HomePage() {
               <div
                 key={i}
                 style={{
-                  padding: "40px 32px",
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(126,184,232,0.15)",
-                  borderRadius: "8px",
-                  backdropFilter: "blur(10px)",
+                  padding: "32px 28px",
+                  background: "rgba(255,255,255,0.02)",
+                  border: "1px solid rgba(126,184,232,0.1)",
+                  borderRadius: "4px",
+                  backdropFilter: "blur(8px)",
                   transition: "all 0.3s ease",
                 }}
                 onMouseOver={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(126,184,232,0.4)";
-                  e.currentTarget.style.background = "rgba(126,184,232,0.05)";
-                  e.currentTarget.style.transform = "translateY(-4px)";
+                  e.currentTarget.style.borderColor = "rgba(126,184,232,0.3)";
+                  e.currentTarget.style.background = "rgba(126,184,232,0.03)";
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(126,184,232,0.15)";
-                  e.currentTarget.style.background = "rgba(255,255,255,0.03)";
-                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.borderColor = "rgba(126,184,232,0.1)";
+                  e.currentTarget.style.background = "rgba(255,255,255,0.02)";
                 }}
               >
                 <h4
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: "1.3rem",
+                    fontSize: "1.1rem",
                     letterSpacing: "0.1em",
                     color: "#ffffff",
-                    marginBottom: "16px",
+                    marginBottom: "14px",
                   }}
                 >
                   {service.title}
@@ -336,8 +268,8 @@ export default function HomePage() {
                 <p
                   style={{
                     fontFamily: "var(--font-body)",
-                    fontSize: "0.95rem",
-                    color: "rgba(255,255,255,0.7)",
+                    fontSize: "0.85rem",
+                    color: "rgba(255,255,255,0.6)",
                     lineHeight: 1.8,
                   }}
                 >
@@ -354,20 +286,19 @@ export default function HomePage() {
         style={{
           position: "relative",
           zIndex: 10,
-          padding: "60px 24px",
+          padding: "50px 24px",
           background: "rgba(0,0,0,0.8)",
           borderTop: "1px solid rgba(126,184,232,0.1)",
-          borderBottom: "1px solid rgba(126,184,232,0.1)",
         }}
       >
         <div
           style={{
-            maxWidth: "900px",
+            maxWidth: "800px",
             margin: "0 auto",
             display: "flex",
             justifyContent: "space-around",
             flexWrap: "wrap",
-            gap: "40px",
+            gap: "30px",
           }}
         >
           {[
@@ -380,9 +311,9 @@ export default function HomePage() {
               <div
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
+                  fontSize: "clamp(1.5rem, 3vw, 2rem)",
                   color: "#7eb8e8",
-                  marginBottom: "8px",
+                  marginBottom: "6px",
                 }}
               >
                 {stat.value}
@@ -390,9 +321,9 @@ export default function HomePage() {
               <div
                 style={{
                   fontFamily: "var(--font-heading)",
-                  fontSize: "0.75rem",
-                  letterSpacing: "0.15em",
-                  color: "rgba(255,255,255,0.5)",
+                  fontSize: "0.65rem",
+                  letterSpacing: "0.2em",
+                  color: "rgba(255,255,255,0.4)",
                   textTransform: "uppercase",
                 }}
               >
@@ -408,17 +339,16 @@ export default function HomePage() {
         style={{
           position: "relative",
           zIndex: 10,
-          padding: "120px 24px",
+          padding: "100px 24px",
           textAlign: "center",
-          background: "linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%)",
         }}
       >
         <h3
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.8rem, 4vw, 3rem)",
+            fontSize: "clamp(1.5rem, 3vw, 2.5rem)",
             color: "#ffffff",
-            marginBottom: "24px",
+            marginBottom: "20px",
           }}
         >
           Ready to Create?
@@ -426,10 +356,10 @@ export default function HomePage() {
         <p
           style={{
             fontFamily: "var(--font-body)",
-            fontSize: "1rem",
-            color: "rgba(255,255,255,0.7)",
-            maxWidth: "500px",
-            margin: "0 auto 40px",
+            fontSize: "0.95rem",
+            color: "rgba(255,255,255,0.6)",
+            maxWidth: "450px",
+            margin: "0 auto 35px",
           }}
         >
           Join us in building the future of sound and content.
@@ -437,17 +367,18 @@ export default function HomePage() {
         <Link
           href="/contact"
           style={{
-            padding: "18px 50px",
+            padding: "16px 45px",
             background: "transparent",
             border: "1px solid #7eb8e8",
-            borderRadius: "4px",
+            borderRadius: "2px",
             color: "#7eb8e8",
             fontFamily: "var(--font-heading)",
-            fontSize: "0.9rem",
+            fontSize: "0.75rem",
             letterSpacing: "0.15em",
             textTransform: "uppercase",
             display: "inline-block",
             transition: "all 0.3s ease",
+            textDecoration: "none",
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.background = "rgba(126,184,232,0.1)";
@@ -465,7 +396,7 @@ export default function HomePage() {
         style={{
           position: "relative",
           zIndex: 10,
-          padding: "40px 24px",
+          padding: "30px 24px",
           background: "rgba(0,0,0,0.9)",
           borderTop: "1px solid rgba(126,184,232,0.1)",
           textAlign: "center",
@@ -474,8 +405,8 @@ export default function HomePage() {
         <div
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "0.75rem",
-            color: "rgba(255,255,255,0.4)",
+            fontSize: "0.7rem",
+            color: "rgba(255,255,255,0.3)",
             letterSpacing: "0.1em",
           }}
         >
@@ -484,10 +415,10 @@ export default function HomePage() {
         <div
           style={{
             fontFamily: "var(--font-mono)",
-            fontSize: "0.65rem",
-            color: "rgba(255,255,255,0.2)",
-            marginTop: "12px",
-            letterSpacing: "0.15em",
+            fontSize: "0.6rem",
+            color: "rgba(255,255,255,0.15)",
+            marginTop: "10px",
+            letterSpacing: "0.2em",
           }}
         >
           1 1 1 1 1 0 1 1 1 1 0 1 0 0 1
